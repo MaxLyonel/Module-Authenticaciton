@@ -78,8 +78,13 @@ export default {
           password: this.password
         }
       })
-      /*console.log($auth.user);*/
-      console.log(res);
+      this.$auth.setUser(res.data.payload.user)
+      this.$axios.setHeader('Accept', 'application/json')
+      
+      let us = await this.$axios.get('global/city')
+      console.log(us)
+
+    
       /*.then( () => alert("exito"))*/
       /*.catch(() => alert("error"))*/
 

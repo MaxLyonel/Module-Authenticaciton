@@ -9,7 +9,7 @@
           >
         </div>
         <div class="w-1/2">
-          <span class="font-semibold text-white uppercase">{{ $auth.user.name }}</span>
+          <span class="font-semibold text-white uppercase">{{ $auth.user.last_name }}</span>
         </div>
       </div>
       <div class="mt-10 mb-4">

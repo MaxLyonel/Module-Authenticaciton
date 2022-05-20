@@ -44,6 +44,14 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth-next'
   ],
+  axios: {
+    baseURL: process.env.BASE_URL + '/api',
+    proxy: true,
+    credentials: true
+  },
+  common: {
+    'Accept':'applicaction/json',
+  },
   proxy: {
     '/laravel':{
       target: 'https://laravel-auth.nuxtjs.app',
@@ -55,22 +63,39 @@ export default {
 	  	laravelSanctum:{
         provider:'laravel/sanctum',
         url:process.env.BASE_URL,
-        token: {
-          property:'access_token',
-          required: true,
-          type: 'Bearer'
-        },
+        //token: {
+          //property:'access_token',
+          //required: true,
+          //type: 'Bearer'
+        //},
+        //token: {
+          //name: 'XSRF-TOKEN',
+          //property:'access_token',
+          //type:'Bearer',
+          //required: true,
+          //global:true,
+        //},
         endpoints:{
           login:{
             url:'/api/auth/login',
           },
-          user:{
-            url:'/api/auth/user',
-            method:'GET',
-            //propertyName:'',
+          //user:{
+            //url:'/api/auth/auth_user',
+            //method:'GET',
+            //property:data.payload.access_token,
             //data:'payload',
-          },
+            //autoFetch: false,
+          //Solucionarlo con Vuex
+          //res.data.payload.user
+          //},
+          user: false,
+          //csrf: {
+            //url:''
+          //}
         },
+        //user: {
+          //autoFetch: false,
+        //}
       },
     },
     redirect: {
@@ -79,11 +104,6 @@ export default {
       callback: false,
       home: false
     },
-  },
-  axios: {
-    baseURL: process.env.BASE_URL + '/api',
-    proxy: true,
-    credentials: true
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
