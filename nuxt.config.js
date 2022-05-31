@@ -73,7 +73,7 @@ export default {
             //url: '/login'
           },
           user:{
-            url:'http://localhost:8989/api/user',
+            url:'http://localhost:8989/api/auth/auth_user',
             method:'GET',
             property:'user',
             //data:'payload',
@@ -84,6 +84,9 @@ export default {
           //user: false,
           //csrf: {
             //url:''
+          },
+          logout: {
+            url:'http://localhost:8989/api/logout'
           }
         },
 

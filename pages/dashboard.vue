@@ -155,10 +155,10 @@ export default {
         path: '/'
       })
     },
-    /*async ciudades(){*/
-      /*let us = await this.$axios.get('/api/global/city')*/
-      /*console.log("datos" + us)*/
-      /*}*/
+    async ciudades(){
+      let us = await this.$axios.get('/global/city')
+      console.log("datos" + us)
+      }
     
   }
 }
