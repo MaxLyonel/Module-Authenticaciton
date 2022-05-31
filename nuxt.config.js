@@ -44,14 +44,6 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth-next'
   ],
-  axios: {
-    baseURL: process.env.BASE_URL + '/api',
-    proxy: true,
-    credentials: true
-  },
-  common: {
-    'Accept':'applicaction/json',
-  },
   proxy: {
     '/laravel':{
       target: 'https://laravel-auth.nuxtjs.app',
@@ -60,15 +52,15 @@ export default {
   },
   auth:{
     strategies: {
-	  	laravelSanctum:{
-        provider:'laravel/sanctum',
+	  	'laravelJWT':{
+        provider:'laravel/jwt',
         url:process.env.BASE_URL,
         //token: {
           //property:'access_token',
           //required: true,
           //type: 'Bearer'
         //},
-        //token: {
+        //cookie: {
           //name: 'XSRF-TOKEN',
           //property:'access_token',
           //type:'Bearer',
@@ -77,33 +69,61 @@ export default {
         //},
         endpoints:{
           login:{
-            url:'/api/auth/login',
+            url:'http://localhost:8989/api/login',
+            //url: '/login'
           },
-          //user:{
-            //url:'/api/auth/auth_user',
-            //method:'GET',
-            //property:data.payload.access_token,
+          user:{
+            url:'http://localhost:8989/api/user',
+            method:'GET',
+            property:'user',
             //data:'payload',
             //autoFetch: false,
           //Solucionarlo con Vuex
           //res.data.payload.user
           //},
-          user: false,
+          //user: false,
           //csrf: {
             //url:''
-          //}
+          }
         },
-        //user: {
-          //autoFetch: false,
-        //}
+
+        // ---para jwtlaravel---
+        token: {
+          property: 'authorisation.token',
+          maxAge: 60 * 60,
+          global: true,
+          type:'Bearer',
+          required: true,
+        },
+        refreshToken: {
+          maxAge: 20160 * 60,
+        },
+        //----------------------
+        
+        //tokenRequired:false,
+        //tokenType:false,
+        //user: false,
+
       },
+      //localStorage: false,
     },
     redirect: {
       login: '/', //dashboard
       logout: '/',
       callback: false,
-      home: false
+      home: false,
     },
+  },
+  axios: {
+    baseURL: process.env.BASE_URL +'/api',
+    //baseURL: 'http://localhost:8989', // esto no funciona con al opción proxy activada
+    //prefic: '/api', // no funciona
+    //proxy: true,
+    credentials: true,
+    common: {
+      'Accept': 'aplication/json',
+      //'Authorization' : token
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

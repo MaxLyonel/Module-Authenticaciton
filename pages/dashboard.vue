@@ -119,7 +119,7 @@
               </svg>
             </span>
             <a href="#">
-              <span class="ml-2">Settings</span>
+              <span class="ml-2" @click="ciudades">Ciudades</span>
             </a>
           </li>
           <li class="flex flex-row px-4 py-4 mb-2 text-gray-100 border-gray-300 rounded rounded-lg hover:text-black hover:bg-gray-300 hover:font-bold">
@@ -154,7 +154,12 @@ export default {
       this.$router.push({
         path: '/'
       })
-    }
+    },
+    /*async ciudades(){*/
+      /*let us = await this.$axios.get('/api/global/city')*/
+      /*console.log("datos" + us)*/
+      /*}*/
+    
   }
 }
 </script>

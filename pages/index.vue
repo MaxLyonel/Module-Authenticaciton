@@ -66,23 +66,31 @@ export default {
   auth: 'guest',
   data () {
     return {
-      email: 'gpatty',
-      password: '123456'
+      email: 'rvelasquez',
+      password: '76226637'
     }
   },
   methods: {
     async onSubmit () {
-      let res = await this.$auth.loginWith('laravelSanctum', {
+      let res = await this.$auth.loginWith('laravelJWT', {
         data: {
           username: this.email,
           password: this.password
         }
       })
-      this.$auth.setUser(res.data.payload.user)
-      this.$axios.setHeader('Accept', 'application/json')
+      console.log(res)
+      /*this.$auth.setUser(res.data)*/
+      /*this.$axios.setHeader('Accept', 'application/json')*/
+
+
+      /*let user = await this.$axios.get('/api/user')*/
+      /*this.$auth.setUser(user)*/
       
-      let us = await this.$axios.get('global/city')
-      console.log(us)
+      /*console.log(this.$auth.user)*/
+
+       /*PROBLEMAS REDIRECCIÓN*/
+      /*No es por la solicitud multiple*/
+      /*Creo que es por que no esta tomando en cuenta al usuario*/
 
     
       /*.then( () => alert("exito"))*/
@@ -91,7 +99,12 @@ export default {
       this.$router.push({
         path: 'dashboard',
       })
-    }
+
+      /*console.log(this.$auth.user)*/
+      /*let us = await this.$axios.get('auth/auth_user')*/
+      /*console.log("datos  =>  " + us.data.payload.user)*/
+
+    },
   }
 }
 </script>
